@@ -101,10 +101,23 @@ def stop_program():
     cam.release()
     root.quit()
 
+# Función para refrescar la cámara
+def refresh_camera():
+    cam.release()
+    cam = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+    update_frame()
+
 stop_button = tk.Button(root, text="Detener", command=stop_program, 
                         bg="light blue", fg="white", 
                         font=("Helvetica", 12, "bold"))
 stop_button.grid(row=1, column=1, sticky="sw")
+
+# Agrega un botón de "Refrescar" en la interfaz gráfica
+refresh_button = tk.Button(root, text="Refrescar", command=refresh_camera,
+                           bg="green", fg="white",
+                           font=("Helvetica", 12, "bold"))
+refresh_button.grid(row=1, column=0, sticky="se")
+
 # Inicia la actualización y la interfaz gráfica
 update_frame()
 root.mainloop()
